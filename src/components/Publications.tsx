@@ -1,5 +1,4 @@
-import React from 'react';
-import { Youtube, Instagram, Camera, Music, Play, Eye } from 'lucide-react';
+import { Eye, Instagram, Music, Play, Youtube } from 'lucide-react';
 
 const Publications = () => {
   const videos = [
@@ -105,7 +104,7 @@ const Publications = () => {
               Acompanhe Nosso Conteúdo
             </h3>
             <p className="text-ancestral-sage mb-6 max-w-2xl mx-auto">
-              Inscreva-se em nossos canais para não perder nenhum registro dos nossos projetos, 
+              Inscreva-se em nossos canais para não perder nenhum registro dos nossos projetos,
               ensaios e eventos culturais.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

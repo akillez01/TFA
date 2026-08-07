@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Build artifacts / local backups (não fazem parte do source)
+dist.zip
+site-backup-*.tar.gz
+staging/

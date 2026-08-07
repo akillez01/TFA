@@ -1,5 +1,4 @@
-import React from 'react';
-import { Star, Calendar, MapPin, Users2, Camera, Play } from 'lucide-react';
+import { Calendar, Camera, Play, Star } from 'lucide-react';
 
 const Projects = () => {
   const projects = [
@@ -41,9 +40,8 @@ const Projects = () => {
             {projects.map((project, index) => (
               <div
                 key={index}
-                className={`grid md:grid-cols-2 gap-8 items-center ${
-                  index % 2 === 1 ? 'md:grid-flow-col-dense' : ''
-                }`}
+                className={`grid md:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'md:grid-flow-col-dense' : ''
+                  }`}
               >
                 <div className={`${index % 2 === 1 ? 'md:col-start-2' : ''}`}>
                   <div className="relative group">

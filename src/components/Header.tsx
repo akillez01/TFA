@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Music, Zap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import logoSemNome from '../assets/logo-sem-nome.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,44 +26,52 @@ const Header = () => {
   ];
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-ancestral-bark/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
-    }`}>
-      <nav className="container mx-auto px-4 py-4">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${isScrolled
+          ? 'bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-2xl'
+          : 'bg-black/20 backdrop-blur-sm'
+        }`}
+    >
+      <nav className="container mx-auto px-4 py-3 md:py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="relative">
-              <Music className="w-8 h-8 text-ancestral-gold animate-pulse" />
-              <Zap className="w-4 h-4 text-tech-circuit absolute -top-1 -right-1" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-ancestral-gold font-organic">
+          <a href="#home" className="flex items-center gap-3 min-w-0">
+            <img
+              src={logoSemNome}
+              alt="Logo Tecnofonia Ancestral"
+              className="w-10 h-10 md:w-11 md:h-11 rounded-full object-cover border border-ancestral-gold/40 shrink-0"
+            />
+            <div className="leading-tight min-w-0">
+              <p className="text-base md:text-xl font-bold text-ancestral-gold font-organic whitespace-nowrap truncate">
                 Tecnofonia Ancestral
-              </h1>
-              <p className="text-xs text-ancestral-sage">Coletivo Cultural</p>
+              </p>
+              <p className="text-[11px] md:text-xs text-ancestral-sage tracking-wide">Coletivo Cultural</p>
             </div>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {menuItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-white hover:text-ancestral-gold transition-colors duration-300 font-medium"
+                className="text-white/90 hover:text-ancestral-gold transition-colors duration-300 font-medium text-sm xl:text-base"
               >
                 {item.label}
               </a>
             ))}
-            <button className="bg-ancestral-gold text-ancestral-bark px-6 py-2 rounded-full font-semibold hover:bg-ancestral-ochre transition-colors duration-300">
+            <a
+              href="#contact"
+              className="bg-ancestral-gold text-black px-5 py-2 rounded-full font-semibold hover:bg-ancestral-ochre transition-colors duration-300"
+            >
               Apoie o Coletivo
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white"
+            className="lg:hidden text-white bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -70,20 +79,24 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 bg-ancestral-bark/95 rounded-lg p-4">
+          <div className="lg:hidden mt-3 bg-black/90 border border-white/10 rounded-2xl p-4 shadow-xl">
             {menuItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="block py-2 text-white hover:text-ancestral-gold transition-colors duration-300"
+                className="block py-2.5 text-white/90 hover:text-ancestral-gold transition-colors duration-300 border-b border-white/5 last:border-b-0"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
               </a>
             ))}
-            <button className="w-full mt-4 bg-ancestral-gold text-ancestral-bark py-2 rounded-full font-semibold">
+            <a
+              href="#contact"
+              className="block w-full mt-4 bg-ancestral-gold text-black py-3 rounded-full font-semibold text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Apoie o Coletivo
-            </button>
+            </a>
           </div>
         )}
       </nav>

@@ -5,19 +5,19 @@ export default {
     extend: {
       colors: {
         ancestral: {
-          earth: '#8B4513',
-          ochre: '#CC7722',
-          forest: '#2D5016',
-          gold: '#FFD700',
-          bark: '#654321',
-          sage: '#87A96B',
-          copper: '#B87333',
-          clay: '#A0522D'
+          earth: '#0D1B2A',
+          ochre: '#FF8C42',
+          forest: '#111111',
+          gold: '#FF9F1C',
+          bark: '#000000',
+          sage: '#4EA8DE',
+          copper: '#FF6B35',
+          clay: '#FF4FA3'
         },
         tech: {
-          circuit: '#00D4AA',
-          neon: '#39FF14',
-          digital: '#0066CC'
+          circuit: '#2EA8FF',
+          neon: '#FF5CA8',
+          digital: '#1F4B99'
         }
       },
       fontFamily: {

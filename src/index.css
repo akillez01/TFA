@@ -1,3 +1,247 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --cine-bg: #050505;
+  --cine-text: #f5efe6;
+  --cine-accent: #d4af7a;
+  --cine-soft: #ff7aa2;
+}
+
+html,
+body,
+#root {
+  background: var(--cine-bg);
+  color: var(--cine-text);
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Fraunces', serif;
+}
+
+em {
+  font-style: italic;
+  color: var(--cine-accent);
+}
+
+.grain-overlay {
+  position: fixed;
+  inset: -50%;
+  pointer-events: none;
+  z-index: 8;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  animation: grainShift 8s steps(10) infinite;
+}
+
+.cursor-dot {
+  display: none;
+}
+
+@media (pointer: fine) {
+  .cursor-dot {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background: #f5efe6;
+    mix-blend-mode: difference;
+    pointer-events: none;
+    z-index: 999;
+    transform: translate(-50%, -50%);
+    transition: width 0.24s ease, height 0.24s ease;
+  }
+
+  .cursor-dot.is-hover {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+.cine-story {
+  position: relative;
+  height: 100vh;
+  z-index: 10;
+}
+
+.cine-stage {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.cine-panel {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cine-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center;
+}
+
+.cine-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.08) 22%, rgba(0, 0, 0, 0.82) 100%);
+}
+
+.cine-overlay {
+  position: absolute;
+  left: 8vw;
+  right: 8vw;
+  bottom: 16vh;
+  max-width: 780px;
+  z-index: 2;
+}
+
+.cine-label {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #f5efe6;
+  opacity: 0.72;
+  margin-bottom: 0.9rem;
+}
+
+.cine-title {
+  font-size: clamp(2rem, 5vw, 4.6rem);
+  line-height: 1.03;
+  margin-bottom: 1.1rem;
+  text-wrap: balance;
+}
+
+.cine-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.cine-chips span {
+  border: 1px solid rgba(245, 239, 230, 0.3);
+  background: rgba(5, 5, 5, 0.45);
+  padding: 0.42rem 0.8rem;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.cine-hud {
+  position: absolute;
+  right: 7vw;
+  bottom: 9vh;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(245, 239, 230, 0.72);
+  z-index: 2;
+}
+
+.fab-wa {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 9999px;
+  background: #25d366;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  z-index: 60;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fab-wa:hover {
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 16px 32px rgba(37, 211, 102, 0.45);
+}
+
+@keyframes grainShift {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-5%, -8%);
+  }
+
+  30% {
+    transform: translate(3%, -4%);
+  }
+
+  50% {
+    transform: translate(-8%, 3%);
+  }
+
+  70% {
+    transform: translate(6%, 8%);
+  }
+
+  90% {
+    transform: translate(-3%, 5%);
+  }
+}
+
+@media (max-width: 768px) {
+  .cine-overlay {
+    left: 6vw;
+    right: 6vw;
+    bottom: 14vh;
+  }
+
+  .cine-hud {
+    right: 6vw;
+    bottom: 7.5vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain-overlay {
+    animation: none;
+  }
+
+  .cine-story,
+  .cine-stage {
+    height: auto;
+  }
+
+  .cine-panel {
+    position: relative;
+    min-height: 65vh;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .cine-overlay {
+    opacity: 1;
+    transform: none;
+  }
+
+  .cursor-dot {
+    display: none !important;
+  }
+}
