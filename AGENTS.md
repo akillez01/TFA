@@ -34,8 +34,8 @@ Priorize mudanças seguras, pequenas e consistentes com a estética e conteúdo 
 
 ## Guardrails de deploy e build
 - O build é estático (sem runtime Node.js no servidor).
-- Não alterar `base: './'` em [vite.config.ts](vite.config.ts) sem justificar, pois isso impacta caminhos de assets no Plesk/subpastas.
-- Rotas SPA em produção dependem de rewrite no servidor; preserve [public/.htaccess](public/.htaccess).
+- Não alterar `base: './'` em [vite.config.ts](vite.config.ts) sem justificar, pois isso mantém os assets compatíveis com subpastas e o histórico de deploy.
+- Rotas SPA em produção usam [public/_redirects](public/_redirects) no Cloudflare Pages; preserve [public/.htaccess](public/.htaccess) enquanto a transição do Plesk não estiver concluída.
 - Antes de orientar deploy, consulte [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Pontos de atenção funcionais

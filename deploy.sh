@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# Script de deployment para Plesk
-# Uso: ./deploy.sh
+# Script de build para Cloudflare Pages
+# Uso local: ./deploy.sh
+# O deploy recomendado é automático pelo GitHub integrado ao Cloudflare Pages.
 
-echo "🚀 Iniciando processo de build para deployment no Plesk..."
+echo "🚀 Iniciando processo de build para o Cloudflare Pages..."
 
 # Limpar pasta dist anterior
 echo "🧹 Limpando pasta dist anterior..."
@@ -20,13 +21,9 @@ if [ $? -eq 0 ]; then
     echo "📁 Arquivos gerados na pasta 'dist':"
     ls -la dist/
     echo ""
-    echo "📋 Próximos passos para deployment no Plesk:"
-    echo "1. Faça upload de todos os arquivos da pasta 'dist' para o diretório público do seu domínio no Plesk"
-    echo "2. Certifique-se de que o arquivo .htaccess foi enviado junto"
-    echo "3. Verifique se as permissões dos arquivos estão corretas (644 para arquivos, 755 para diretórios)"
-    echo ""
-    echo "💡 Dica: Você pode comprimir a pasta dist em um arquivo .zip para facilitar o upload:"
-    echo "   zip -r dist.zip dist/"
+    echo "📋 O diretório 'dist' está pronto para o Cloudflare Pages."
+    echo "   No painel, use Build command: npm run build:prod"
+    echo "   e Build output directory: dist"
 else
     echo "❌ Erro durante o build. Verifique os logs acima."
     exit 1
